@@ -13,7 +13,8 @@ export default {
           },
           Meal: {
             screens: {
-              MealScreen: 'meal',
+              Overview: 'meal',
+              Detail: 'meal/detail',
             },
           },
         },

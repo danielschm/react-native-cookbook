@@ -6,8 +6,9 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/home/HomeScreen';
-import MealScreen from '../screens/meal/MealScreen';
-import {BottomTabParamList, TabOneParamList, TabTwoParamList} from '../types';
+import MealOverview from '../screens/meal/Overview';
+import MealDetail from '../screens/meal/Detail';
+import {BottomTabParamList, HomeParamList, MealParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -46,7 +47,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const HomeStack = createStackNavigator<TabOneParamList>();
+const HomeStack = createStackNavigator<HomeParamList>();
 
 function HomeNavigator() {
     return (
@@ -54,21 +55,26 @@ function HomeNavigator() {
             <HomeStack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                options={{headerTitle: 'Home'}}
+                // options={{headerTitle: 'Home'}}
             />
         </HomeStack.Navigator>
     );
 }
 
-const MealStack = createStackNavigator<TabTwoParamList>();
+const MealStack = createStackNavigator<MealParamList>();
 
 function MealNavigator() {
     return (
         <MealStack.Navigator>
             <MealStack.Screen
-                name="MealScreen"
-                component={MealScreen}
+                name="Overview"
+                component={MealOverview}
                 options={{headerTitle: 'Gerichte'}}
+            />
+            <MealStack.Screen
+                name="Detail"
+                component={MealDetail}
+                options={{headerTitle: 'Detail'}}
             />
         </MealStack.Navigator>
     );

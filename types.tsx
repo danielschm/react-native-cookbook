@@ -8,10 +8,11 @@ export type BottomTabParamList = {
   Meal: undefined;
 };
 
-export type TabOneParamList = {
+export type HomeParamList = {
   HomeScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  MealScreen: undefined;
+export type MealParamList = {
+  Overview: undefined;
+  Detail: undefined;
 };
