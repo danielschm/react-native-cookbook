@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 
-import {View, Separator, Container} from '../components/Layout';
-import { Text } from '../components/Basic';
+import {Separator, Container} from '../../components/Layout';
+import { Text } from '../../components/Basic';
 
 export default function HomeScreen() {
   return (

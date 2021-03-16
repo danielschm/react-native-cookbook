@@ -6,12 +6,12 @@ export type ViewProps = ThemeProps & DefaultView['props'];
 
 export function View(props: ViewProps) {
     const {style, ...otherProps} = props;
-    const backgroundColor = getThemeColor(props, 'background');
+    const backgroundColor = getThemeColor( 'background');
     return <DefaultView style={[{backgroundColor}, style]} {...otherProps} />;
 }
 
 export function Separator(props: ViewProps) {
-    const backgroundColor = getThemeColor(props, 'background');
+    const backgroundColor = getThemeColor('background');
     return <DefaultView style={[{backgroundColor}, {
         marginVertical: 30,
         height: 1,
@@ -21,7 +21,7 @@ export function Separator(props: ViewProps) {
 
 export function Container(props: ViewProps) {
     const {style, ...otherProps} = props;
-    const backgroundColor = getThemeColor(props, 'background');
+    const backgroundColor = getThemeColor( 'background');
     return <DefaultView style={[{backgroundColor}, {
         flex: 1,
         alignItems: 'center',

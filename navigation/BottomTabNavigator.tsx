@@ -1,45 +1,47 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {Ionicons} from '@expo/vector-icons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import HomeScreen from '../screens/HomeScreen';
-import MealScreen from '../screens/MealScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import HomeScreen from '../screens/home/HomeScreen';
+import MealScreen from '../screens/meal/MealScreen';
+import {BottomTabParamList, TabOneParamList, TabTwoParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme();
 
-  return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Meal"
-        component={MealNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
+    return (
+        <BottomTab.Navigator
+            initialRouteName="Home"
+            tabBarOptions={{activeTintColor: Colors[colorScheme].tint}}>
+            <BottomTab.Screen
+                name="Home"
+                component={HomeNavigator}
+                options={{
+                    tabBarLabel: "",
+                    tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
+                }}
+            />
+            <BottomTab.Screen
+                name="Meal"
+                component={MealNavigator}
+                options={{
+                    tabBarLabel: "",
+                    tabBarIcon: ({color}) => <TabBarIcon name="document-text" color={color}/>,
+                }}
+            />
+        </BottomTab.Navigator>
+    );
 }
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+    return <Ionicons size={30} style={{marginBottom: -3}} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -47,27 +49,27 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 const HomeStack = createStackNavigator<TabOneParamList>();
 
 function HomeNavigator() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
-      />
-    </HomeStack.Navigator>
-  );
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{headerTitle: 'Home'}}
+            />
+        </HomeStack.Navigator>
+    );
 }
 
 const MealStack = createStackNavigator<TabTwoParamList>();
 
 function MealNavigator() {
-  return (
-    <MealStack.Navigator>
-      <MealStack.Screen
-        name="MealScreen"
-        component={MealScreen}
-        options={{ headerTitle: 'Gerichte' }}
-      />
-    </MealStack.Navigator>
-  );
+    return (
+        <MealStack.Navigator>
+            <MealStack.Screen
+                name="MealScreen"
+                component={MealScreen}
+                options={{headerTitle: 'Gerichte'}}
+            />
+        </MealStack.Navigator>
+    );
 }

@@ -6,12 +6,12 @@ export type TextProps = ThemeProps & DefaultText['props'];
 
 export function Text(props: TextProps) {
     const {style, ...otherProps} = props;
-    const color = getThemeColor(props, 'text');
+    const color = getThemeColor( 'text');
     return <DefaultText style={[{color}, style]} {...otherProps} />;
 }
 
 export function Title(props: TextProps) {
-    const color = getThemeColor(props, 'text');
+    const color = getThemeColor( 'text');
     return <DefaultText style={[{color}, {
         fontSize: 20,
         fontWeight: 'bold',
