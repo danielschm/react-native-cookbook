@@ -1,10 +1,12 @@
-import {Text} from "../../components/Basic";
 import * as React from "react";
 import {FlatList, StyleSheet, TouchableHighlight} from "react-native";
 import Meal from "./Meal";
-import {View} from "../../components/Layout";
+import {Text} from "../../components/Basic";
+import {Separator, View} from "../../components/Layout";
 import {getThemeColor} from "../../components/Themed";
-import { NativeStackNavigationProp } from "react-native-screens/native-stack";
+import {NativeStackNavigationProp} from "react-native-screens/native-stack";
+import { SearchBar } from 'react-native-elements';
+
 
 export type MealListProps = {
     meals: Meal[];
@@ -23,8 +25,9 @@ export default function MealList({meals, navigation}: MealListProps) {
                             id: item.id
                         });
                     }}>
-                    <View style={styles.item}>
-                        <Text>{item.name}</Text>
+                    <View>
+                        <Text style={styles.item}>{item.name}</Text>
+                        <Separator/>
                     </View>
                 </TouchableHighlight>
             }
@@ -34,8 +37,9 @@ export default function MealList({meals, navigation}: MealListProps) {
 
 const styles = StyleSheet.create({
     item: {
+        fontFamily: "SFProText-Regular",
         padding: 10,
-        fontSize: 18,
+        fontSize: 17,
         height: 44,
     },
 });

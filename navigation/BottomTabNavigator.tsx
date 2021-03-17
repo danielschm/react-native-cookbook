@@ -9,6 +9,7 @@ import HomeScreen from '../screens/home/HomeScreen';
 import MealOverview from '../screens/meal/Overview';
 import MealDetail from '../screens/meal/Detail';
 import {BottomTabParamList, HomeParamList, MealParamList} from '../types';
+import {getThemeColor} from "../components/Themed";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -23,7 +24,7 @@ export default function BottomTabNavigator() {
                 name="Home"
                 component={HomeNavigator}
                 options={{
-                    tabBarLabel: "",
+                    tabBarLabel: "Home",
                     tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
                 }}
             />
@@ -31,7 +32,7 @@ export default function BottomTabNavigator() {
                 name="Meal"
                 component={MealNavigator}
                 options={{
-                    tabBarLabel: "",
+                    tabBarLabel: "Rezepte",
                     tabBarIcon: ({color}) => <TabBarIcon name="document-text" color={color}/>,
                 }}
             />
@@ -55,7 +56,10 @@ function HomeNavigator() {
             <HomeStack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                // options={{headerTitle: 'Home'}}
+                options={{
+                    headerTransparent: true,
+                    headerTitle: ""
+                }}
             />
         </HomeStack.Navigator>
     );
@@ -69,12 +73,20 @@ function MealNavigator() {
             <MealStack.Screen
                 name="Overview"
                 component={MealOverview}
-                options={{headerTitle: 'Gerichte'}}
+                options={{
+                    headerTransparent: true,
+                    headerTitle: ""
+                }}
             />
             <MealStack.Screen
                 name="Detail"
                 component={MealDetail}
-                options={{headerTitle: 'Detail'}}
+                options={{
+                    headerTransparent: false,
+                    headerTitle: "",
+                    headerBackTitleVisible: true,
+                    headerTruncatedBackTitle: "Gerichte"
+                }}
             />
         </MealStack.Navigator>
     );

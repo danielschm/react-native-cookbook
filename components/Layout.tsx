@@ -7,23 +7,26 @@ export type ViewProps = ThemeProps & DefaultView['props'];
 
 export function View(props: ViewProps) {
     const {style, ...otherProps} = props;
-    const backgroundColor = getThemeColor('background');
-    return <DefaultView style={[{backgroundColor}, style]} {...otherProps} />;
+    return <DefaultView style={[style]} {...otherProps} />;
+}
+
+export function Screen(props: ViewProps) {
+    return <View style={{
+        height: "100%",
+        backgroundColor: getThemeColor("background")
+    }} {...props}/>
 }
 
 export function Separator(props: ViewProps) {
-    const backgroundColor = getThemeColor('soft');
-    return <DefaultView style={[{backgroundColor}, {
-        marginVertical: 30,
+    return <DefaultView style={[{
+        backgroundColor: getThemeColor("softer"),
         height: 1,
-        width: '80%'
-    }]} {...props} />;
+    }, props.style]}/>;
 }
 
 export function Container(props: ViewProps) {
     const {style, ...otherProps} = props;
-    const backgroundColor = getThemeColor('background');
-    return <DefaultView style={[{backgroundColor}, {
+    return <View style={[style, {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
@@ -31,29 +34,35 @@ export function Container(props: ViewProps) {
 }
 
 export type FormElementProps = {
-    label: string
-} & ThemeProps & DefaultView['props'];
+    label?: string
+} & ViewProps;
 
 export function FormElement(props: FormElementProps) {
-    const {style, label, children, ...otherProps} = props;
-    const backgroundColor = getThemeColor('background');
-    return <DefaultView style={[{backgroundColor}, {
-        marginVertical: 10,
-        marginHorizontal: 20,
+    const {label, children, ...otherProps} = props;
+    return <View style={{
         flex: 1,
         justifyContent: "space-between",
-        flexDirection: "row"
-    }]} {...otherProps}>
-        <View style={{
-            flex: 1,
-            justifyContent: "center"
-        }}>
-            <Text style={{
-                width: 60,
-                textAlign: "right",
-            }}>{label}</Text>
-        </View>
+        flexDirection: "row",
+    }} {...otherProps}>
+        {label ?
+            <View style={{
+                flex: 1,
+                justifyContent: "center"
+            }}>
+                <Text>{label}</Text>
+            </View> : undefined}
         {children}
-    </DefaultView>;
+    </View>;
 }
 
+export function FormContainer(props: ViewProps) {
+    const {children, ...otherProps} = props;
+    return <View style={{
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        paddingHorizontal: 15,
+        borderColor: getThemeColor("softer")
+    }}>
+        {children}
+    </View>;
+}

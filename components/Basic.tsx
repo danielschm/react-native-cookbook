@@ -6,27 +6,31 @@ export type TextProps = ThemeProps & DefaultText['props'];
 export type TextInputProps = ThemeProps & DefaultTextInput['props'];
 
 export function Text(props: TextProps) {
-    const {style, ...otherProps} = props;
-    const color = getThemeColor('text');
-    return <DefaultText style={[{color}, style]} {...otherProps} />;
+    return <DefaultText style={{
+        color: getThemeColor('text'),
+        fontSize: 14,
+        fontFamily: "SFProText-Regular"
+    }} {...props} />;
 }
 
 export function Title(props: TextProps) {
-    const color = getThemeColor('text');
-    return <DefaultText style={[{color}, {
-        fontSize: 20,
-        fontWeight: 'bold',
-    }]} {...props} />;
+    return <DefaultText style={{
+        fontSize: 34,
+        margin: 10,
+        color: getThemeColor('text'),
+        fontFamily: "SFProDisplay-Bold",
+    }} {...props} />;
 }
 
 export function TextInput(props: TextInputProps) {
     return (
-        <DefaultTextInput style={{
-            flexGrow: 1,
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            borderRadius: 3,
-            backgroundColor: getThemeColor("soft")
-        }} {...props}/>
+        <DefaultTextInput
+            placeholderTextColor={getThemeColor("secondaryText")}
+            style={{
+                flexGrow: 1,
+                fontSize: 14,
+                fontFamily: "SFProText-Regular",
+                paddingVertical: 15,
+            }} {...props}/>
     );
 }

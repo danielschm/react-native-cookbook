@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import {Separator, Container} from '../../components/Layout';
-import { Text } from '../../components/Basic';
+import {Text, Title} from '../../components/Basic';
 
 export default function HomeScreen() {
   return (
     <Container>
-      <Text>Tab One</Text>
+      <Title>Home</Title>
       <Separator/>
     </Container>
   );

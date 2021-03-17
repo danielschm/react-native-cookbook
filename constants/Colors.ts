@@ -1,21 +1,44 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const colors = {
+    light: {
+        blue: "rgb(0,122,255)",
+        green: "rgb(52,199,89)",
+        orange: "rgb(255,149,0)",
+        red: "rgb(255,59,48)",
+        gray: "rgb(142,142,147)",
+        softGray: "rgb(199,199,204)",
+        softerGray: "rgb(229,229,234)"
+    },
+    dark: {
+        blue: "rgb(10,132,255)",
+        green: "rgb(48,209,88)",
+        orange: "rgb(255,159,10)",
+        red: "rgb(255,69,58)",
+        gray: "rgb(142,142,147)",
+        softGray: "rgb(72,72,74)",
+        softerGray: "rgb(44,44,46)"
+    }
+}
+
 
 export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    soft: '#eee',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    soft: 'rgba(255,255,255,0.1)',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+    light: {
+        text: '#000',
+        background: '#fff',
+        secondaryText: colors.light.gray,
+        soft: colors.light.softGray,
+        softer: colors.light.softerGray,
+        tint: colors.light.blue,
+        tabIconDefault: colors.light.gray,
+        tabIconSelected: colors.light.blue,
+    },
+    dark: {
+        text: '#fff',
+        background: '#0a0a0a',
+        secondaryText: colors.dark.gray,
+        soft: colors.dark.softGray,
+        softer: colors.dark.softerGray,
+        tint: colors.dark.blue,
+        tabIconDefault: colors.dark.gray,
+        tabIconSelected: colors.dark.orange,
+    },
 };
