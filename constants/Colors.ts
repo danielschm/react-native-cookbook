@@ -5,8 +5,10 @@ const colors = {
         orange: "rgb(255,149,0)",
         red: "rgb(255,59,48)",
         gray: "rgb(142,142,147)",
+        semisoftGray: "rgb(174,174,178)",
         softGray: "rgb(199,199,204)",
-        softerGray: "rgb(229,229,234)"
+        softerGray: "rgb(229,229,234)",
+        softestGray: "rgb(242,242,247)"
     },
     dark: {
         blue: "rgb(10,132,255)",
@@ -14,8 +16,10 @@ const colors = {
         orange: "rgb(255,159,10)",
         red: "rgb(255,69,58)",
         gray: "rgb(142,142,147)",
+        semisoftGray: "rgb(99,99,102)",
         softGray: "rgb(72,72,74)",
-        softerGray: "rgb(44,44,46)"
+        softerGray: "rgb(44,44,46)",
+        softestGray: "rgb(28,28,30)"
     }
 }
 
@@ -25,8 +29,10 @@ export default {
         text: '#000',
         background: '#fff',
         secondaryText: colors.light.gray,
+        semisoft: colors.light.semisoftGray,
         soft: colors.light.softGray,
         softer: colors.light.softerGray,
+        softest: colors.light.softestGray,
         tint: colors.light.blue,
         tabIconDefault: colors.light.gray,
         tabIconSelected: colors.light.blue,
@@ -35,8 +41,10 @@ export default {
         text: '#fff',
         background: '#0a0a0a',
         secondaryText: colors.dark.gray,
+        semisoft: colors.dark.semisoftGray,
         soft: colors.dark.softGray,
         softer: colors.dark.softerGray,
+        softest: colors.dark.softestGray,
         tint: colors.dark.blue,
         tabIconDefault: colors.dark.gray,
         tabIconSelected: colors.dark.orange,

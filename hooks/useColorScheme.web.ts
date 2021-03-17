@@ -2,4 +2,5 @@
 // this with react-native-appearance if you would like theme support on web.
 export default function useColorScheme() {
   return 'light';
+  return 'dark';
 }

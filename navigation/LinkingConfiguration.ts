@@ -14,7 +14,12 @@ export default {
           Meal: {
             screens: {
               Overview: 'meal',
-              Detail: 'meal/detail',
+              Detail: {
+                screens: {
+                  Info: 'meal/detail/info',
+                  Steps: 'meal/detail/steps'
+                },
+              },
             },
           },
         },

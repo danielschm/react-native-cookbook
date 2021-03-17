@@ -6,4 +6,8 @@ export default class Meal {
         this.id = id;
         this.name = name;
     }
+
+    static create() {
+        return new Meal("", "");
+    }
 }

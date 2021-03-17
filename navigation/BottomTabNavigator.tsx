@@ -7,9 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/home/HomeScreen';
 import MealOverview from '../screens/meal/Overview';
-import MealDetail from '../screens/meal/Detail';
+import MealDetail from '../screens/meal/detail/Main';
 import {BottomTabParamList, HomeParamList, MealParamList} from '../types';
-import {getThemeColor} from "../components/Themed";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 

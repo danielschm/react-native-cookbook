@@ -5,11 +5,9 @@ import {Text} from "../../components/Basic";
 import {Separator, View} from "../../components/Layout";
 import {getThemeColor} from "../../components/Themed";
 import {NativeStackNavigationProp} from "react-native-screens/native-stack";
-import { SearchBar } from 'react-native-elements';
-
 
 export type MealListProps = {
-    meals: Meal[];
+    meals?: Meal[];
     navigation: NativeStackNavigationProp<any>;
 };
 
@@ -19,7 +17,7 @@ export default function MealList({meals, navigation}: MealListProps) {
             data={meals}
             renderItem={({item}) =>
                 <TouchableHighlight
-                    underlayColor={getThemeColor('text')}
+                    underlayColor={getThemeColor('soft')}
                     onPress={() => {
                         navigation.navigate("Detail", {
                             id: item.id
@@ -38,6 +36,7 @@ export default function MealList({meals, navigation}: MealListProps) {
 const styles = StyleSheet.create({
     item: {
         fontFamily: "SFProText-Regular",
+        color: getThemeColor("text"),
         padding: 10,
         fontSize: 17,
         height: 44,
