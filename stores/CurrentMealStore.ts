@@ -17,4 +17,8 @@ export class CurrentMealStore {
     setMeal(meal: Meal) {
         this.meal = meal;
     }
+
+    setNewMeal() {
+        this.meal = Meal.create();
+    }
 }

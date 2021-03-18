@@ -1,3 +1,5 @@
+import {color} from "react-native-elements/dist/helpers";
+
 const colors = {
     light: {
         blue: "rgb(0,122,255)",
@@ -23,7 +25,6 @@ const colors = {
     }
 }
 
-
 export default {
     light: {
         text: '#000',
@@ -36,6 +37,7 @@ export default {
         tint: colors.light.blue,
         tabIconDefault: colors.light.gray,
         tabIconSelected: colors.light.blue,
+        buttonGroupBorder: colors.light.softGray,
     },
     dark: {
         text: '#fff',
@@ -47,6 +49,7 @@ export default {
         softest: colors.dark.softestGray,
         tint: colors.dark.blue,
         tabIconDefault: colors.dark.gray,
-        tabIconSelected: colors.dark.orange,
+        tabIconSelected: colors.dark.blue,
+        buttonGroupBorder: '#fff',
     },
 };

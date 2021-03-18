@@ -15,6 +15,7 @@ import {
     Icon
 } from 'react-native-elements';
 import {Ionicons} from "@expo/vector-icons";
+import {IconProps} from "@expo/vector-icons/build/createIconSet";
 
 export type TextProps = ThemeProps & DefaultText['props'];
 export type TextInputProps = ThemeProps & DefaultTextInput['props'];
@@ -29,8 +30,8 @@ export function Text(props: TextProps) {
 
 export function Title(props: TextProps) {
     return <DefaultText style={{
-        marginHorizontal: 10,
-        marginTop: 10,
+        marginHorizontal: 20,
+        marginTop: 20,
         color: getThemeColor('text'),
         fontSize: getFontSize("title"),
         fontFamily: "SFProDisplay-Bold",
@@ -103,11 +104,13 @@ export function ButtonGroup(props: ButtonGroupProps) {
         containerStyle={{
             borderRadius: 5,
             borderWidth: 1,
-            borderColor: getThemeColor("soft")
+            borderColor: getThemeColor("buttonGroupBorder")
         }} {...props}/>
 }
 
-type ActionButtonProps = TouchableHighlight["props"];
+type ActionButtonProps = {
+    icon?: "add" | "checkmark"
+} & TouchableHighlight["props"];
 
 export function ActionButton(props: ActionButtonProps) {
     return <TouchableHighlight style={{
@@ -122,6 +125,6 @@ export function ActionButton(props: ActionButtonProps) {
         position: "absolute",
 
     }} {...props}>
-        <Ionicons name="add" size={24} color="white" />
+        <Ionicons name={props.icon || "add"} size={24} color="white" />
     </TouchableHighlight>
 }

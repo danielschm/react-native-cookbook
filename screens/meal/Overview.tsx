@@ -28,9 +28,8 @@ export default function Overview({navigation}: any) {
             <SearchBar/>
             <ActionButton
                 onPress={() => {
-                    navigation.navigate("Detail")
-                }}
-            />
+                    navigation.navigate("Detail", { new: true });
+                }}/>
             <ScrollView>
                 <MealList/>
             </ScrollView>

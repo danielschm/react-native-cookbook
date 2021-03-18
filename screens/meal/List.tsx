@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     item: {
         fontFamily: "SFProText-Regular",
         color: getThemeColor("text"),
-        padding: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 15,
         fontSize: 17,
-        height: 44,
     },
 });

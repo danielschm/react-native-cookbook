@@ -4,23 +4,45 @@ import MealAPI from "./../Api";
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Info} from "./Info";
 import Steps from "./Steps";
-import {Title} from "../../../components/Basic";
+import {ActionButton, Title} from "../../../components/Basic";
 import {Screen} from "../../../components/Layout";
 import {useCurrentMealStore} from "../../../providers/RootStoreProvider";
+import {observer} from "mobx-react";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function Overview({route}: any) {
-    const id = route.params?.id;
+type OverviewProps = {
+    route: {
+        params: {
+            new: boolean,
+            id: string
+        }
+    }
+}
+
+export default observer(function Overview({route}: OverviewProps) {
     const mealsStore = useCurrentMealStore();
 
-    MealAPI.getMeal(id).then(meal => {
-        mealsStore.setMeal(meal);
-    });
+    if (route.params?.new) {
+        mealsStore.setNewMeal();
+    } else {
+        const id = route.params?.id;
+        MealAPI.getMeal(id)
+            .then(meal => {
+                mealsStore.setMeal(meal);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
     return (
         <Screen>
             <Title>{mealsStore.meal.name || " "}</Title>
+            <ActionButton
+                icon={"checkmark"}
+                onPress={() => {
+                }}/>
             <Tab.Navigator>
                 <Tab.Screen
                     name="mealInfo"
@@ -35,4 +57,4 @@ export default function Overview({route}: any) {
             </Tab.Navigator>
         </Screen>
     );
-}
+});
