@@ -13,7 +13,7 @@ export const Info = observer(function Info() {
             <ScrollView>
                 <FormContainer>
                     <FormElement>
-                        <TextInput placeholder={"Name"} value={meal?.name}/>
+                        <TextInput autoFocus={meal.id === ""} placeholder={"Name"} defaultValue={meal.name}/>
                     </FormElement>
                     <Separator/>
                     <FormElement label={"Dauer"}>

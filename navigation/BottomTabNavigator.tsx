@@ -84,7 +84,7 @@ function MealNavigator() {
                     headerTransparent: false,
                     headerTitle: "",
                     headerBackTitleVisible: true,
-                    headerTruncatedBackTitle: "Gerichte"
+                    headerTruncatedBackTitle: "Meine Rezepte"
                 }}
             />
         </MealStack.Navigator>
