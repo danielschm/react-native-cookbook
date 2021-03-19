@@ -2,28 +2,27 @@ import {
     StyleProp,
     Text as DefaultText,
     TextInput as DefaultTextInput,
-    TextStyle, TouchableHighlight, View,
+    TextStyle, TouchableHighlight,
     ViewStyle
 } from "react-native";
 
 import * as React from "react";
-import {ThemeProps, getThemeColor, getFontSize} from "./Themed";
+import {ThemeProps} from "./Themed";
 import {
     SearchBar as DefaultSearchBar,
     ButtonGroup as DefaultButtonGroup,
-    ButtonGroupProps,
-    Icon
+    ButtonGroupProps as DefaultButtonGroupProps
 } from 'react-native-elements';
 import {Ionicons} from "@expo/vector-icons";
-import {IconProps} from "@expo/vector-icons/build/createIconSet";
+import {MutableRefObject} from "react";
+import {Theme} from "../stores/RootStore";
 
 export type TextProps = ThemeProps & DefaultText['props'];
-export type TextInputProps = ThemeProps & DefaultTextInput['props'];
 
 export function Text(props: TextProps) {
     return <DefaultText style={{
-        color: getThemeColor('text'),
-        fontSize: getFontSize("text"),
+        color: props.theme.getColor('text'),
+        fontSize: props.theme.getFontSize("text"),
         fontFamily: "SFProText-Regular"
     }} {...props} />;
 }
@@ -31,24 +30,31 @@ export function Text(props: TextProps) {
 export function Title(props: TextProps) {
     return <DefaultText style={{
         marginHorizontal: 20,
-        marginTop: 20,
-        color: getThemeColor('text'),
-        fontSize: getFontSize("title"),
+        marginTop: 10,
+        color: props.theme.getColor('text'),
+        fontSize: props.theme.getFontSize("title"),
         fontFamily: "SFProDisplay-Bold",
     }} {...props} />;
 }
 
+export type TextInputProps = ThemeProps & DefaultTextInput['props'] & {
+    innerRef?:  MutableRefObject<any>
+};
+
 export function TextInput(props: TextInputProps) {
     return (
         <DefaultTextInput
-            placeholderTextColor={getThemeColor("semisoft")}
+            placeholderTextColor={props.theme.getColor("semisoft")}
             style={{
                 flexGrow: 1,
-                fontSize: getFontSize("text"),
-                color: getThemeColor("text"),
+                fontSize: props.theme.getFontSize("text"),
+                color: props.theme.getColor("text"),
                 fontFamily: "SFProText-Regular",
                 paddingVertical: 15,
-            }} {...props}/>
+            }}
+            ref={props.innerRef}
+            {...props}
+        />
     );
 }
 
@@ -61,9 +67,10 @@ type SearchBarBaseProps = {
     onBlur?(): void;
     onChangeText?(text: string): void;
     onCancel?(): void;
+    customTheme: Theme;
 };
 
-type SearchBarProps = SearchBarBaseProps & TextInputProps;
+type SearchBarProps = SearchBarBaseProps & DefaultTextInput["props"];
 
 export function SearchBar(props: SearchBarProps) {
     return <DefaultSearchBar
@@ -71,53 +78,59 @@ export function SearchBar(props: SearchBarProps) {
         placeholder={"Suche"}
         inputContainerStyle={{
             height: 40,
-            backgroundColor: getThemeColor("softer")
+            backgroundColor: props.customTheme.getColor("softer")
         }}
         containerStyle={{
             backgroundColor: "transparent"
         }}
         inputStyle={{
-            fontSize: getFontSize("text"),
-            color: getThemeColor("text")
+            fontSize: props.customTheme.getFontSize("text"),
+            color: props.customTheme.getColor("text")
         }} {...props}/>
 }
 
+type ButtonGroupProps = DefaultButtonGroupProps & {
+    customTheme: Theme
+};
 
 export function ButtonGroup(props: ButtonGroupProps) {
     return <DefaultButtonGroup
         textStyle={{
-            color: getThemeColor("text"),
+            color: props.customTheme.getColor("text"),
         }}
         selectedTextStyle={{
-            color: getThemeColor("text"),
+            color: props.customTheme.getColor("text"),
         }}
         buttonStyle={{
             width: 60,
-            backgroundColor: getThemeColor("softest")
+            backgroundColor: props.customTheme.getColor("softest")
         }}
         innerBorderStyle={{
-            color: getThemeColor("softer")
+            color: props.customTheme.getColor("softer")
         }}
         selectedButtonStyle={{
-            backgroundColor: getThemeColor("background")
+            backgroundColor: props.customTheme.getColor("background")
         }}
         containerStyle={{
+            width: 180,
             borderRadius: 5,
             borderWidth: 1,
-            borderColor: getThemeColor("buttonGroupBorder")
-        }} {...props}/>
+            borderColor: props.customTheme.getColor("buttonGroupBorder")
+        }}
+        {...props}/>
 }
 
 type ActionButtonProps = {
     icon?: "add" | "checkmark"
+    theme: Theme
 } & TouchableHighlight["props"];
 
 export function ActionButton(props: ActionButtonProps) {
-    return <TouchableHighlight style={{
-        width: 50,
-        height: 50,
-        padding: 13,
-        backgroundColor: getThemeColor("tint"),
+    return <TouchableHighlight underlayColor={props.theme.getColor("semisoft")} style={{
+        width: 60,
+        height: 60,
+        padding: 18,
+        backgroundColor: props.theme.getColor("tint"),
         borderRadius: 50,
         bottom: 20,
         right: 20,
@@ -125,6 +138,6 @@ export function ActionButton(props: ActionButtonProps) {
         position: "absolute",
 
     }} {...props}>
-        <Ionicons name={props.icon || "add"} size={24} color="white" />
+        <Ionicons name={props.icon || "add"} size={24} color="white"/>
     </TouchableHighlight>
 }

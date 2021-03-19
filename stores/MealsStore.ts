@@ -1,6 +1,6 @@
 import RootStore from "./RootStore";
-import {action, makeObservable, observable, override} from "mobx";
-import Meal from "../screens/meal/Meal";
+import {action, makeObservable, observable} from "mobx";
+import {Meal} from "../screens/meal/model/Meal";
 
 export class MealsStore {
     meals: Meal[] = [];

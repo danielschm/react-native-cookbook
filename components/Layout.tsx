@@ -13,13 +13,13 @@ export function View(props: ViewProps) {
 export function Screen(props: ViewProps) {
     return <View style={{
         height: "100%",
-        backgroundColor: getThemeColor("background")
+        backgroundColor: props.theme.getColor("background")
     }} {...props}/>
 }
 
 export function Separator(props: ViewProps) {
     return <DefaultView style={[{
-        backgroundColor: getThemeColor("softer"),
+        backgroundColor: props.theme.getColor("softer"),
         height: 1,
     }, props.style]}/>;
 }
@@ -45,11 +45,11 @@ export function FormElement(props: FormElementProps) {
         flexDirection: "row",
     }} {...otherProps}>
         {label ?
-            <View style={{
+            <View theme={props.theme} style={{
                 flex: 1,
                 justifyContent: "center"
             }}>
-                <Text>{label}</Text>
+                <Text theme={props.theme}>{label}</Text>
             </View> : undefined}
         {children}
     </View>;
@@ -57,7 +57,7 @@ export function FormElement(props: FormElementProps) {
 
 export function FormContainer(props: ViewProps) {
     const {children, ...otherProps} = props;
-    return <View style={{
+    return <View theme={props.theme} style={{
         borderBottomWidth: 1,
         borderTopWidth: 1,
         paddingHorizontal: 15,

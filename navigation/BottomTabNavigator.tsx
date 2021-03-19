@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import HomeScreen from '../screens/home/HomeScreen';
-import MealOverview from '../screens/meal/Overview';
-import MealDetail from '../screens/meal/detail/Main';
+import {HomeScreen} from '../screens/home/HomeScreen';
+import {Overview} from '../screens/meal/Overview';
+import {Main} from '../screens/meal/detail/Main';
 import {BottomTabParamList, HomeParamList, MealParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -71,7 +71,7 @@ function MealNavigator() {
         <MealStack.Navigator>
             <MealStack.Screen
                 name="Overview"
-                component={MealOverview}
+                component={Overview}
                 options={{
                     headerTransparent: true,
                     headerTitle: ""
@@ -79,7 +79,7 @@ function MealNavigator() {
             />
             <MealStack.Screen
                 name="Detail"
-                component={MealDetail}
+                component={Main}
                 options={{
                     headerTransparent: false,
                     headerTitle: "",

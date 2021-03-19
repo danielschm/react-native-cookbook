@@ -1,29 +1,55 @@
 import * as React from "react";
 import {ScrollView} from "react-native";
-import {ButtonGroup, TextInput, Title} from "../../../components/Basic";
+import {ButtonGroup, TextInput} from "../../../components/Basic";
 import {FormContainer, FormElement, Screen, Separator} from "../../../components/Layout";
 import {observer} from "mobx-react";
-import {useCurrentMealStore} from "../../../providers/RootStoreProvider";
+import {useCurrentMealStore, useRootStore} from "../../../providers/RootStoreProvider";
+import {IconTextInputContainer} from "../../../components/IconTextInputContainer";
+import {useEffect, useRef} from "react";
 
 export const Info = observer(function Info() {
-    const meal = useCurrentMealStore().meal;
+    const mealStore = useCurrentMealStore();
+    const theme = useRootStore().theme;
+    const meal = mealStore.meal;
+
+    useEffect(() => {
+        // @ts-ignore
+        inputRef.current.focus();
+    }, []);
+
+    const inputRef = useRef();
 
     return (
-        <Screen>
+        <Screen theme={theme}>
             <ScrollView>
-                <FormContainer>
-                    <FormElement>
-                        <TextInput autoFocus={meal.id === ""} placeholder={"Name"} defaultValue={meal.name}/>
+                <FormContainer theme={theme}>
+                    <FormElement theme={theme}>
+                        <TextInput
+                            theme={theme}
+                            placeholder={"Name"}
+                            onChangeText={text => mealStore.setName(text)}
+                            defaultValue={meal.name}/>
                     </FormElement>
-                    <Separator/>
-                    <FormElement label={"Dauer"}>
-                        <ButtonGroup selectedIndex={0} buttons={["Kurz", "Mittel", "Lang"]}/>
+                    <Separator theme={theme}/>
+                    <FormElement theme={theme} label={"Dauer"}>
+                        <ButtonGroup
+                            customTheme={theme}
+                            selectedIndex={mealStore.lengthIndex}
+                            onPress={(index) => {mealStore.setLengthByIndex(index)}}
+                            buttons={["Kurz", "Mittel", "Lang"]}/>
                     </FormElement>
-                    <Separator/>
-                    <FormElement>
-                        <TextInput placeholder={"Tags"}/>
+                    <Separator theme={theme}/>
+                    <FormElement theme={theme}>
+                        <IconTextInputContainer
+                            theme={theme}
+                            icon={"add"}
+                            onIconPress={() => {}}>
+                            <TextInput
+                                theme={theme}
+                                innerRef={inputRef}
+                                placeholder={"Tags"}/>
+                        </IconTextInputContainer>
                     </FormElement>
-                    <Separator/>
                 </FormContainer>
             </ScrollView>
         </Screen>

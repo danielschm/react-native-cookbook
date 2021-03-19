@@ -38,6 +38,7 @@ export default {
         tabIconDefault: colors.light.gray,
         tabIconSelected: colors.light.blue,
         buttonGroupBorder: colors.light.softGray,
+        accept: colors.light.green
     },
     dark: {
         text: '#fff',
@@ -51,5 +52,6 @@ export default {
         tabIconDefault: colors.dark.gray,
         tabIconSelected: colors.dark.blue,
         buttonGroupBorder: '#fff',
+        accept: colors.dark.green
     },
 };

@@ -1,30 +1,31 @@
 import * as Linking from 'expo-linking';
 
 export default {
-  prefixes: [Linking.makeUrl('/')],
-  config: {
-    screens: {
-      Root: {
+    prefixes: [Linking.makeUrl('/')],
+    config: {
         screens: {
-          Home: {
-            screens: {
-              HomeScreen: 'home',
-            },
-          },
-          Meal: {
-            screens: {
-              Overview: 'meal',
-              Detail: {
+            Root: {
                 screens: {
-                  Info: 'meal/detail/info',
-                  Steps: 'meal/detail/steps'
+                    Home: {
+                        screens: {
+                            HomeScreen: 'home',
+                        },
+                    },
+                    Meal: {
+                        screens: {
+                            Overview: "overview",
+                            // Detail: {
+                            //     screens: {
+                            //         Info: 'info',
+                            //         Ingredients: 'ingredients',
+                            //         Steps: 'steps',
+                            //     },
+                            // },
+                        },
+                    },
                 },
-              },
             },
-          },
+            NotFound: '*',
         },
-      },
-      NotFound: '*',
     },
-  },
 };

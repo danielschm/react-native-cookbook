@@ -1,15 +1,18 @@
 import * as React from "react";
 import {ScrollView} from "react-native";
-import {ButtonGroup, TextInput, Title} from "../../../components/Basic";
-import {FormContainer, FormElement, Screen, Separator} from "../../../components/Layout";
-import Meal from "../Meal";
+import {Separator} from "../../../components/Layout";
+import {Screen} from "../../../components/Layout";
+import {observer} from "mobx-react";
+import {useRootStore} from "../../../providers/RootStoreProvider";
 
-export default function Steps(meal: Meal) {
+export const Steps = observer(function Steps() {
+    const theme = useRootStore().theme;
+
     return (
-        <Screen>
+        <Screen theme={theme}>
             <ScrollView>
-                <Separator/>
+                <Separator theme={theme}/>
             </ScrollView>
         </Screen>
     );
-}
+});
