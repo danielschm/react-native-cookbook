@@ -32,12 +32,14 @@ export class Meal {
 }
 
 export class Step {
+    idMapping: number
     position: number
-    text: string
+    name: string
 
-    constructor(position: number, text: string) {
+    constructor(idMapping: number, position: number, name: string) {
+        this.idMapping = idMapping;
         this.position = position;
-        this.text = text;
+        this.name = name;
     }
 }
 
@@ -67,16 +69,18 @@ export class FullMeal extends Meal {
     }
 
     static create() {
-        return new FullMeal({id: "", name: ""});
+        return new FullMeal({id: "", name: " "});
     }
 
-    addStep(text: string) {
-        const position = this.steps.length + 1;
-        this.steps.push(new Step(position, text));
+    addStep(name: string) {
+        this.steps.unshift(new Step(0,0, name));
+        this.steps.forEach((e, i) => {
+            e.position =  i;
+        });
     }
 
-    addIngredient(text: string) {
-        this.ingredients.unshift(new Step(0, text));
+    addIngredient(name: string) {
+        this.ingredients.unshift(new Step(0, 0, name));
         this.ingredients.forEach((e, i) => {
            e.position =  i;
         });
@@ -98,6 +102,12 @@ export class FullMeal extends Meal {
                 e.position = i+1;
                 return e;
             });
+    }
+
+    static getDbIngredient(ingredient: Step) {
+        // const matches = new RegExp("(\\d|\\d* *?)(\\D*) (.*)", ingredient.name);
+
+
     }
 
 }

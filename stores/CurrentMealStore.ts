@@ -26,6 +26,7 @@ export class CurrentMealStore {
             currentIngredient: observable,
             currentStep: observable,
             setMeal: action,
+            setNewMeal: action,
             setName: action,
             setLoaded: action,
             setLengthByIndex: action,

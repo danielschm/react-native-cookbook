@@ -13,8 +13,10 @@ export const Info = observer(function Info() {
     const meal = mealStore.meal;
 
     useEffect(() => {
-        // @ts-ignore
-        inputRef.current.focus();
+        if (meal.id === "") {
+            // @ts-ignore
+            inputRef.current.focus();
+        }
     }, []);
 
     const inputRef = useRef();

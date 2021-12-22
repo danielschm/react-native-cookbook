@@ -31,9 +31,9 @@ export const Ingredients = observer(function Ingredients() {
                                     }}>
                                     <TextInput
                                         theme={theme}
-                                        value={ingredient.text}
+                                        value={ingredient.name}
                                         onChangeText={(text: string) => {
-                                            ingredient.text = text;
+                                            ingredient.name = text;
                                             mealStore.updateIngredients();
                                         }}
                                         onSubmitEditing={() => {
