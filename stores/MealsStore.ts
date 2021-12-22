@@ -7,16 +7,23 @@ export class MealsStore {
     _meals: Meal[] = [];
     filterText: string = "";
     rootStore: RootStore;
+    loading: boolean = false;
 
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore
         makeObservable(this, {
             meals: observable,
             filterText: observable,
+            loading: observable,
             setMeals: action,
             filter: action,
             clearFilter: action,
+            setLoading: action
         })
+    }
+
+    setLoading(loading: boolean) {
+        this.loading = loading;
     }
 
     setMeals(meals: Meal[]) {

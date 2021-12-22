@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {List} from "./List";
-import {ScrollView, View, VirtualizedList} from "react-native";
+import {RefreshControl, ScrollView, View, VirtualizedList} from "react-native";
 import {MealAPI} from "./Api";
 import {ActionButton, SearchBar, Title} from "../../components/Basic";
 import {Screen} from "../../components/Layout";
@@ -11,15 +11,23 @@ export const Overview = observer(function Overview({navigation}: any) {
     const mealsStore = useMealsStore();
     const theme = useRootStore().theme;
 
-    MealAPI.getMeals().then(meals => {
-        mealsStore.setMeals(meals);
-    });
+    const loadMeals = () => {
+        MealAPI.getMeals().then(meals => {
+            mealsStore.setMeals(meals);
+        })
+    };
+
+    loadMeals();
 
     const MealList = observer(function MealList() {
         return (
             <List
-                theme={theme} meals={mealsStore.meals}
-                navigation={navigation}/>
+                theme={theme}
+                meals={mealsStore.meals}
+                navigation={navigation}
+                refreshing={mealsStore.loading}
+                onRefresh={loadMeals}
+            />
         );
     });
 
@@ -41,7 +49,6 @@ export const Overview = observer(function Overview({navigation}: any) {
                 <Title theme={theme}>Meine Rezepte</Title>
             </View>
             <MealSearchBar/>
-
             <ActionButton
                 theme={theme}
                 onPress={() => {

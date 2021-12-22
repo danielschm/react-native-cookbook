@@ -1,5 +1,5 @@
 import * as React from "react";
-import {FlatList, StyleSheet, TouchableHighlight} from "react-native";
+import {FlatList, FlatListProps, RefreshControl, StyleSheet, TouchableHighlight} from "react-native";
 import {Meal} from "./model/Meal";
 import {Text} from "../../components/Basic";
 import {Separator, View} from "../../components/Layout";
@@ -10,13 +10,15 @@ import {Theme} from "../../stores/RootStore";
 export type MealListProps = {
     meals?: Meal[];
     navigation: NativeStackNavigationProp<any>;
-    theme: Theme
+    theme: Theme;
+    refreshing: boolean;
+    onRefresh: () => void;
 };
 
-export function List({meals, navigation, theme}: MealListProps) {
+export function List(props: MealListProps) {
     const styles = StyleSheet.create({
         item: {
-            color: theme.getColor("text"),
+            color: props.theme.getColor("text"),
             paddingHorizontal: 15,
             paddingVertical: 15,
             fontSize: 17,
@@ -26,18 +28,20 @@ export function List({meals, navigation, theme}: MealListProps) {
 
     return (
         <FlatList
-            data={meals}
+            data={props.meals}
+            refreshing={props.refreshing}
+            onRefresh={props.onRefresh}
             renderItem={({item}) =>
                 <TouchableHighlight
-                    underlayColor={theme.getColor('soft')}
+                    underlayColor={props.theme.getColor('soft')}
                     onPress={() => {
-                        navigation.navigate("Detail", {
+                        props.navigation.navigate("Detail", {
                             meal: item
                         });
                     }}>
-                    <View theme={theme}>
-                        <Text theme={theme} style={styles.item}>{item.name}</Text>
-                        <Separator theme={theme}/>
+                    <View theme={props.theme}>
+                        <Text theme={props.theme} style={styles.item}>{item.name}</Text>
+                        <Separator theme={props.theme}/>
                     </View>
                 </TouchableHighlight>
             }
