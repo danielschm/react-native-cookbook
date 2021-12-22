@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {Separator, Container} from '../../components/Layout';
 import {Text, Title} from '../../components/Basic';
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../providers/RootStoreProvider";
 
 export const HomeScreen = observer(function HomeScreen() {

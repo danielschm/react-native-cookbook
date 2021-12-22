@@ -31,7 +31,8 @@ export class MealAPI {
         console.log("Loading the meal");
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const meal = Object.assign(mockData2.find(e => e.id === id) as FullMeal, {});
+                // const meal = Object.assign(mockData2.find(e => e.id === id) as FullMeal, {});
+                const meal = mockData2[0];
                 if (meal) {
                     resolve(meal);
                 } else {

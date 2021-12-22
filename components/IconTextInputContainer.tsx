@@ -3,6 +3,7 @@ import {getFontSize, getThemeColor} from "./Themed";
 import {TouchableHighlight, View} from "react-native";
 import {Ionicons, MaterialIcons} from "@expo/vector-icons";
 import {ViewProps} from "./Layout";
+import {Text} from "./Basic";
 
 type IconTextInputProps = {
     icon: "add" | "remove"
@@ -11,7 +12,7 @@ type IconTextInputProps = {
 
 
 export function IconTextInputContainer(props: IconTextInputProps) {
-    let size = getFontSize("text") - 2;
+    let size = getFontSize("text") + 4;
 
     if (props.icon === "remove") {
         size += 2;
@@ -36,9 +37,6 @@ export function IconTextInputContainer(props: IconTextInputProps) {
                         width: size * 2,
                         height: size * 2,
                         padding: size / 2,
-                        margin: 5,
-                        borderRadius: 20,
-                        backgroundColor: props.icon === "add" ? getThemeColor("tint") : "transparent",
                     }}>
                     {
                         props.icon === "remove" ?
@@ -49,7 +47,7 @@ export function IconTextInputContainer(props: IconTextInputProps) {
                             <Ionicons
                                 name={"add"}
                                 size={size}
-                                color={getThemeColor("background")}/>
+                                color={getThemeColor("tint")}/>
                     }
                 </TouchableHighlight>
             </View>

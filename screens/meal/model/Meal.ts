@@ -76,8 +76,10 @@ export class FullMeal extends Meal {
     }
 
     addIngredient(text: string) {
-        const position = this.ingredients.length + 1;
-        this.ingredients.push(new Step(position, text));
+        this.ingredients.unshift(new Step(0, text));
+        this.ingredients.forEach((e, i) => {
+           e.position =  i;
+        });
     }
 
     removeStep(position: number) {

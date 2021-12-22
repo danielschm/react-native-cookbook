@@ -51,7 +51,7 @@ export default {
         tint: colors.dark.blue,
         tabIconDefault: colors.dark.gray,
         tabIconSelected: colors.dark.blue,
-        buttonGroupBorder: '#fff',
+        buttonGroupBorder: colors.dark.softestGray,
         accept: colors.dark.green
     },
 };

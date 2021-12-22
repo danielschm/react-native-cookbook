@@ -73,6 +73,7 @@ type SearchBarBaseProps = {
 type SearchBarProps = SearchBarBaseProps & DefaultTextInput["props"];
 
 export function SearchBar(props: SearchBarProps) {
+    // @ts-ignore
     return <DefaultSearchBar
         platform={"ios"}
         placeholder={"Suche"}

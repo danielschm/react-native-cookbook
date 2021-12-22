@@ -37,7 +37,8 @@ export class CurrentMealStore {
             removeStep: action,
             reset: action,
             resetChanges: action,
-            saveChanges: action
+            saveChanges: action,
+            addCurrentIngredientToMeal: action
         })
     }
 

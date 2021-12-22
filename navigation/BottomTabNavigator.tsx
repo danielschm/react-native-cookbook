@@ -19,14 +19,14 @@ export default function BottomTabNavigator() {
         <BottomTab.Navigator
             initialRouteName="Home"
             tabBarOptions={{activeTintColor: Colors[colorScheme].tint}}>
-            <BottomTab.Screen
-                name="Home"
-                component={HomeNavigator}
-                options={{
-                    tabBarLabel: "Home",
-                    tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
-                }}
-            />
+            {/*<BottomTab.Screen*/}
+            {/*    name="Home"*/}
+            {/*    component={HomeNavigator}*/}
+            {/*    options={{*/}
+            {/*        tabBarLabel: "Home",*/}
+            {/*        tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,*/}
+            {/*    }}*/}
+            {/*/>*/}
             <BottomTab.Screen
                 name="Meal"
                 component={MealNavigator}

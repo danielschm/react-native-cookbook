@@ -58,7 +58,6 @@ export function FormElement(props: FormElementProps) {
 export function FormContainer(props: ViewProps) {
     const {children, ...otherProps} = props;
     return <View theme={props.theme} style={{
-        borderBottomWidth: 1,
         borderTopWidth: 1,
         paddingHorizontal: 15,
         borderColor: getThemeColor("softer")

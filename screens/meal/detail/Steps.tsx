@@ -2,7 +2,7 @@ import * as React from "react";
 import {ScrollView} from "react-native";
 import {Separator} from "../../../components/Layout";
 import {Screen} from "../../../components/Layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {useRootStore} from "../../../providers/RootStoreProvider";
 
 export const Steps = observer(function Steps() {

@@ -7,7 +7,7 @@ import {Steps} from "./Steps";
 import {Text, Title} from "../../../components/Basic";
 import {Screen, View} from "../../../components/Layout";
 import {useCurrentMealStore, useRootStore} from "../../../providers/RootStoreProvider";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {Meal, FullMeal} from "../model/Meal";
 import {Ingredients} from "./Ingredients";
 import {TouchableHighlight} from "react-native";
@@ -62,42 +62,57 @@ export const Main = function Main({route}: OverviewProps) {
 
     const BottomButtons = observer(function BottomButtons() {
         return <View theme={theme} style={{
-            flexDirection: "row",
-            display: mealsStore.changed ? "flex" : "none"
+            // flexDirection: "row",
+            position: mealsStore.changed ? "absolute" : "relative",
+            zIndex: 10,
+            bottom: 0,
+            width: "100%",
+            display: mealsStore.changed ? "flex" : "none",
+            alignItems: "flex-end"
         }}>
-            <TouchableHighlight
-                style={{flexGrow: 5}}
-                onPress={() => mealsStore.saveChanges()}>
-                <View theme={theme} style={{
-                    paddingVertical: 12,
-                    backgroundColor: theme.getColor("accept")
-                }}>
-                    <Text theme={theme} style={{
-                        textAlign: "center",
-                        color: "#fff"
-                    }}>Speichern</Text>
+            {/*<TouchableHighlight*/}
+            {/*    style={{flexGrow: 5}}*/}
+            {/*    underlayColor={"transparent"}*/}
+            {/*    onPress={() => mealsStore.saveChanges()}>*/}
+            {/*    <View theme={theme} style={{*/}
+            {/*        paddingVertical: 16,*/}
+            {/*        paddingHorizontal: "15%",*/}
+            {/*        margin: 16,*/}
+            {/*        borderRadius: 16,*/}
+            {/*        borderWidth: 1,*/}
+            {/*        borderColor: theme.getColor("softest"),*/}
+            {/*        backgroundColor: theme.getColor("accept")*/}
+            {/*    }}>*/}
+            {/*        <Text theme={theme} style={{*/}
+            {/*            textAlign: "center",*/}
+            {/*            color: theme.getColor("text"),*/}
+            {/*            fontWeight: "bold"*/}
+            {/*        }}>Speichern</Text>*/}
+            {/*    </View>*/}
+            {/*</TouchableHighlight>*/}
+            {/*<TouchableHighlight*/}
+            {/*    style={{flexGrow: 1}}*/}
+            {/*    onPress={() => mealsStore.resetChanges()}>*/}
+            {/*    <View theme={theme} style={{*/}
+            {/*        paddingVertical: 12,*/}
+            {/*        backgroundColor: theme.getColor("softer")*/}
+            {/*    }}>*/}
+            {/*        <Text theme={theme} style={{*/}
+            {/*            textAlign: "center"*/}
+            {/*        }}>Abbrechen</Text>*/}
 
-                </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-                style={{flexGrow: 1}}
-                onPress={() => mealsStore.resetChanges()}>
-                <View theme={theme} style={{
-                    paddingVertical: 12,
-                    backgroundColor: theme.getColor("softer")
-                }}>
-                    <Text theme={theme} style={{
-                        textAlign: "center"
-                    }}>Abbrechen</Text>
-
-                </View>
-            </TouchableHighlight>
+            {/*    </View>*/}
+            {/*</TouchableHighlight>*/}
         </View>;
     });
 
     return (
         <Screen theme={theme}>
-            <MealTitle/>
+            <View theme={theme} style={{
+                paddingBottom: 4
+            }}>
+                <MealTitle/>
+            </View>
             <Tab.Navigator>
                 <Tab.Screen
                     name="Info"

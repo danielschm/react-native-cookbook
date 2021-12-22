@@ -2,7 +2,7 @@ import * as React from "react";
 import {ScrollView} from "react-native";
 import {ButtonGroup, TextInput} from "../../../components/Basic";
 import {FormContainer, FormElement, Screen, Separator} from "../../../components/Layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {useCurrentMealStore, useRootStore} from "../../../providers/RootStoreProvider";
 import {IconTextInputContainer} from "../../../components/IconTextInputContainer";
 import {useEffect, useRef} from "react";

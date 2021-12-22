@@ -1,7 +1,7 @@
 import * as React from "react";
 import {ScrollView, View} from "react-native";
 import {FormContainer, FormElement, Screen, Separator} from "../../../components/Layout";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import {useCurrentMealStore, useRootStore} from "../../../providers/RootStoreProvider";
 import {IconTextInputContainer} from "../../../components/IconTextInputContainer";
 import {TextInput} from "../../../components/Basic";
@@ -37,7 +37,6 @@ export const Ingredients = observer(function Ingredients() {
                                             mealStore.updateIngredients();
                                         }}
                                         onSubmitEditing={() => {
-                                            ingredient.text = "";
                                             mealStore.updateIngredients();
                                         }}/>
                                 </IconTextInputContainer>
@@ -58,6 +57,8 @@ export const Ingredients = observer(function Ingredients() {
                 mealStore.setCurrentIngredient("");
             }}>
             <TextInput
+                blurOnSubmit={false}
+                placeholder={"Zutat hinzufügen"}
                 theme={theme}
                 value={mealStore.currentIngredient}
                 onChangeText={(text: string) => mealStore.setCurrentIngredient(text)}
@@ -72,12 +73,12 @@ export const Ingredients = observer(function Ingredients() {
         <Screen theme={theme}>
             <ScrollView>
                 <FormContainer theme={theme}>
-                    <ExistingIngredients/>
                     <FormElement theme={theme}>
                         <IngredientListTextInput/>
                     </FormElement>
+                    <Separator theme={theme}/>
+                    <ExistingIngredients/>
                 </FormContainer>
-                <Separator theme={theme}/>
             </ScrollView>
         </Screen>
     );
